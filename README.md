@@ -1,29 +1,56 @@
-# Welcome to your Lovable project
+# 🎯 OppSync
 
-This project was built with [Lovable](https://lovable.dev).
+**One Campus. Every Opportunity. Every Event.**
 
-## Build with Lovable
+Students miss hackathons, internships, scholarships and club events because
+announcements are scattered across websites, posters and group chats.
+OppSync fixes that: paste an announcement (or upload a poster photo) and
+**Gemma 4** extracts the title, deadline, eligibility and a short summary —
+all on one screen.
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+- **Model:** `gemma-4-26b-a4b-it` via the Gemini API (`google-genai` package)
+- **One screen, one Gemma call per click** — no database, no login
+- **Open source** (MIT license)
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+## How it works
 
-## Development
+| File | What it does |
+| --- | --- |
+| `gemma_client.py` | The only file that talks to the API. Exposes `ask()`, `ask_with_image()` and `make_chat()`. Reads the key from the `GEMINI_API_KEY` environment variable. |
+| `app.py` | The one-screen Streamlit UI. Two tabs (paste text / upload poster), one button each, results listed below. |
+| `requirements.txt` | Python dependencies. |
+| `.env.example` | Template for your API key (copy to `.env`). |
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## How to run
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
-```
+1. **Install Python 3.10+**, then install dependencies:
 
-## Built with
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+2. **Get a free Gemini API key** at <https://aistudio.google.com/apikey>.
+
+3. **Create your `.env` file** (never commit it — it's git-ignored):
+
+   ```bash
+   cp .env.example .env
+   # then edit .env and paste your key
+   ```
+
+4. **Start the app:**
+
+   ```bash
+   streamlit run app.py
+   ```
+
+5. Open <http://localhost:8501>, paste an announcement or upload a poster,
+   and click **Extract with Gemma 4**.
+
+## Screenshot
+
+![OppSync screenshot](docs/screenshot.png)
+
+## License
+
+MIT — see [LICENSE](LICENSE).
