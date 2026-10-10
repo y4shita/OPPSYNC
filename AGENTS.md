@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep the web preview as a frontend-only OppSync UI with explicitly identified sample opportunities; the Python application remains the sole live extraction implementation, preserving the existing Gemma helper and one-call behavior.
